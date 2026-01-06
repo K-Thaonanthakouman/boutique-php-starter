@@ -26,6 +26,9 @@
         echo $products[1]["stock"];
 
 
+        
+
+
     ?>
 
 
