@@ -114,287 +114,68 @@
                      JOUR 3 : foreach
                      JOUR 4 : Badges conditionnels
                      ============================================ -->
+
+
+                <!-- Fiches produits -->
                 <div class="products-grid">
 
-                    <!-- 1. T-shirt - NOUVEAU -->
-                    <article class="product-card">
-                        <div class="product-card__image-wrapper">
-                            <img src="https://via.placeholder.com/300x300/e2e8f0/64748b?text=T-shirt" alt="T-shirt" class="product-card__image">
-                            <div class="product-card__badges"><span class="badge badge--new">Nouveau</span></div>
-                        </div>
-                        <div class="product-card__content">
-                            <span class="product-card__category">Vêtements</span>
-                            <a href="produit.html?id=1" class="product-card__title">T-shirt Premium Bio</a>
-                            <div class="product-card__price"><span class="product-card__price-current">35,99 €</span></div>
-                            <p class="product-card__stock product-card__stock--available">✓ En stock (45)</p>
-                            <div class="product-card__actions">
-                                <form action="panier.html" method="POST">
-                                    <input type="hidden" name="product_id" value="1">
-                                    <button type="submit" class="btn btn--primary btn--block">Ajouter</button>
-                                </form>
-                            </div>
-                        </div>
-                    </article>
+                    <?php
+                        foreach($products as $product){ ?>
+                            <article class="product-card">
+                                <div class="product-card__image-wrapper">
+                                    <img src= <?= $product["image"] ?> class="product-card__image">
+                                    <div class="product-card__badges">
+                                        <?php
+                                        if ($product["stock"]>0 && $product["stock"]<15) { ?>
+                                            <span class="badge badge--low-stock">Derniers</span>
+                                        <?php
+                                        }
 
-                    <!-- 2. Sneakers - PROMO + DERNIERS -->
-                    <article class="product-card">
-                        <div class="product-card__image-wrapper">
-                            <img src="https://via.placeholder.com/300x300/e2e8f0/64748b?text=Sneakers" alt="Sneakers" class="product-card__image">
-                            <div class="product-card__badges">
-                                <span class="badge badge--promo">-20%</span>
-                                <span class="badge badge--low-stock">Derniers</span>
-                            </div>
-                        </div>
-                        <div class="product-card__content">
-                            <span class="product-card__category">Chaussures</span>
-                            <a href="produit.html?id=2" class="product-card__title">Sneakers Urban</a>
-                            <div class="product-card__price">
-                                <span class="product-card__price-current">79,99 €</span>
-                                <span class="product-card__price-old">99,99 €</span>
-                            </div>
-                            <p class="product-card__stock product-card__stock--low">⚠ Plus que 3</p>
-                            <div class="product-card__actions">
-                                <form action="panier.html" method="POST">
-                                    <input type="hidden" name="product_id" value="2">
-                                    <button type="submit" class="btn btn--primary btn--block">Ajouter</button>
-                                </form>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- 3. Casquette -->
-                    <article class="product-card">
-                        <div class="product-card__image-wrapper">
-                            <img src="https://via.placeholder.com/300x300/e2e8f0/64748b?text=Casquette" alt="Casquette" class="product-card__image">
-                            <div class="product-card__badges"></div>
-                        </div>
-                        <div class="product-card__content">
-                            <span class="product-card__category">Accessoires</span>
-                            <a href="produit.html?id=3" class="product-card__title">Casquette Vintage</a>
-                            <div class="product-card__price"><span class="product-card__price-current">24,99 €</span></div>
-                            <p class="product-card__stock product-card__stock--available">✓ En stock (28)</p>
-                            <div class="product-card__actions">
-                                <form action="panier.html" method="POST">
-                                    <input type="hidden" name="product_id" value="3">
-                                    <button type="submit" class="btn btn--primary btn--block">Ajouter</button>
-                                </form>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- 4. Jean - PROMO -->
-                    <article class="product-card">
-                        <div class="product-card__image-wrapper">
-                            <img src="https://via.placeholder.com/300x300/e2e8f0/64748b?text=Jean" alt="Jean" class="product-card__image">
-                            <div class="product-card__badges"><span class="badge badge--promo">-30%</span></div>
-                        </div>
-                        <div class="product-card__content">
-                            <span class="product-card__category">Vêtements</span>
-                            <a href="produit.html?id=4" class="product-card__title">Jean Slim Stretch</a>
-                            <div class="product-card__price">
-                                <span class="product-card__price-current">55,99 €</span>
-                                <span class="product-card__price-old">79,99 €</span>
-                            </div>
-                            <p class="product-card__stock product-card__stock--available">✓ En stock (20)</p>
-                            <div class="product-card__actions">
-                                <form action="panier.html" method="POST">
-                                    <input type="hidden" name="product_id" value="4">
-                                    <button type="submit" class="btn btn--primary btn--block">Ajouter</button>
-                                </form>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- 5. Sac - NOUVEAU -->
-                    <article class="product-card">
-                        <div class="product-card__image-wrapper">
-                            <img src="https://via.placeholder.com/300x300/e2e8f0/64748b?text=Sac" alt="Sac" class="product-card__image">
-                            <div class="product-card__badges"><span class="badge badge--new">Nouveau</span></div>
-                        </div>
-                        <div class="product-card__content">
-                            <span class="product-card__category">Accessoires</span>
-                            <a href="produit.html?id=5" class="product-card__title">Sac à dos Urbain</a>
-                            <div class="product-card__price"><span class="product-card__price-current">59,99 €</span></div>
-                            <p class="product-card__stock product-card__stock--available">✓ En stock (12)</p>
-                            <div class="product-card__actions">
-                                <form action="panier.html" method="POST">
-                                    <input type="hidden" name="product_id" value="5">
-                                    <button type="submit" class="btn btn--primary btn--block">Ajouter</button>
-                                </form>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- 6. Montre - RUPTURE -->
-                    <article class="product-card">
-                        <div class="product-card__image-wrapper">
-                            <img src="https://via.placeholder.com/300x300/e2e8f0/64748b?text=Montre" alt="Montre" class="product-card__image">
-                            <div class="product-card__badges"><span class="badge badge--out-of-stock">Rupture</span></div>
-                        </div>
-                        <div class="product-card__content">
-                            <span class="product-card__category">Accessoires</span>
-                            <a href="produit.html?id=6" class="product-card__title">Montre Classic</a>
-                            <div class="product-card__price"><span class="product-card__price-current">89,99 €</span></div>
-                            <p class="product-card__stock product-card__stock--out">✗ Rupture</p>
-                            <div class="product-card__actions">
-                                <button class="btn btn--secondary btn--block" disabled>Indisponible</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- 7. Pull -->
-                    <article class="product-card">
-                        <div class="product-card__image-wrapper">
-                            <img src="https://via.placeholder.com/300x300/e2e8f0/64748b?text=Pull" alt="Pull" class="product-card__image">
-                            <div class="product-card__badges"></div>
-                        </div>
-                        <div class="product-card__content">
-                            <span class="product-card__category">Vêtements</span>
-                            <a href="produit.html?id=7" class="product-card__title">Pull Col Roulé</a>
-                            <div class="product-card__price"><span class="product-card__price-current">49,99 €</span></div>
-                            <p class="product-card__stock product-card__stock--available">✓ En stock (15)</p>
-                            <div class="product-card__actions">
-                                <form action="panier.html" method="POST">
-                                    <input type="hidden" name="product_id" value="7">
-                                    <button type="submit" class="btn btn--primary btn--block">Ajouter</button>
-                                </form>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- 8. Ceinture - RUPTURE -->
-                    <article class="product-card">
-                        <div class="product-card__image-wrapper">
-                            <img src="https://via.placeholder.com/300x300/e2e8f0/64748b?text=Ceinture" alt="Ceinture" class="product-card__image">
-                            <div class="product-card__badges"><span class="badge badge--out-of-stock">Rupture</span></div>
-                        </div>
-                        <div class="product-card__content">
-                            <span class="product-card__category">Accessoires</span>
-                            <a href="produit.html?id=8" class="product-card__title">Ceinture Cuir</a>
-                            <div class="product-card__price"><span class="product-card__price-current">34,99 €</span></div>
-                            <p class="product-card__stock product-card__stock--out">✗ Rupture</p>
-                            <div class="product-card__actions">
-                                <button class="btn btn--secondary btn--block" disabled>Indisponible</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- 9. Smartphone -->
-                    <article class="product-card">
-                        <div class="product-card__image-wrapper">
-                            <img src="https://via.placeholder.com/300x300/e2e8f0/64748b?text=Ceinture" alt="<?= $products[0]["name"] ?>" class="product-card__image">
-                            <div class="product-card__badges"><span class="badge badge--new">Nouveau</span></div>
-                        </div>
-                        <div class="product-card__content">
-                            <span class="product-card__category"><?= $products[0]["catégorie"] ?></span>
-                            <a href="produit.html?id=9" class="product-card__title"><?= $products[0]["name"] ?></a>
-                            <div class="product-card__price"><span class="product-card__price-current"><?= number_format($products[0]["prix"], 2, ",", " ") ?> €</span></div>
-                            <p class="product-card__stock product-card__stock--available">✓ En stock (<?= $products[0]["stock"] ?>)</p>
-                            <div class="product-card__actions">
-                                <form action="panier.html" method="POST">
-                                    <input type="hidden" name="product_id" value="9">
-                                    <button type="submit" class="btn btn--primary btn--block">Ajouter</button>
-                                </form>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- 10. Théière -->
-                    <article class="product-card">
-                        <div class="product-card__image-wrapper">
-                            <img src="https://via.placeholder.com/300x300/e2e8f0/64748b?text=Ceinture" alt="<?= $products[1]["name"] ?>" class="product-card__image">
-                            <div class="product-card__badges"></div>
-                        </div>
-                        <div class="product-card__content">
-                            <span class="product-card__category"><?= $products[1]["catégorie"] ?></span>
-                            <a href="produit.html?id=10" class="product-card__title"><?= $products[1]["name"] ?></a>
-                            <div class="product-card__price"><span class="product-card__price-current"><?= number_format($products[1]["prix"], 2, ",", " ") ?> €</span></div>
-                            <p class="product-card__stock product-card__stock--available">✓ En stock (<?= $products[1]["stock"] ?>)</p>
-                            <div class="product-card__actions">
-                                <form action="panier.html" method="POST">
-                                    <input type="hidden" name="product_id" value="10">
-                                    <button type="submit" class="btn btn--primary btn--block">Ajouter</button>
-                                </form>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- 11. Ecran plat UHD OLED -->
-                    <article class="product-card">
-                        <div class="product-card__image-wrapper">
-                            <img src="https://via.placeholder.com/300x300/e2e8f0/64748b?text=Ceinture" alt="<?= $products[2]["name"] ?>" class="product-card__image">
-                            <div class="product-card__badges"><span class="badge badge--new">Nouveau</span></div>
-                        </div>
-                        <div class="product-card__content">
-                            <span class="product-card__category"><?= $products[2]["catégorie"] ?></span>
-                            <a href="produit.html?id=11" class="product-card__title"><?= $products[2]["name"] ?></a>
-                            <div class="product-card__price"><span class="product-card__price-current"><?= number_format($products[2]["prix"], 2, ",", " ") ?> €</span></div>
-                            <p class="product-card__stock product-card__stock--available">✓ En stock (<?= $products[2]["stock"] ?>)</p>
-                            <div class="product-card__actions">
-                                <form action="panier.html" method="POST">
-                                    <input type="hidden" name="product_id" value="11">
-                                    <button type="submit" class="btn btn--primary btn--block">Ajouter</button>
-                                </form>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- 12. Pommeau de douche -->
-                    <article class="product-card">
-                        <div class="product-card__image-wrapper">
-                            <img src="https://via.placeholder.com/300x300/e2e8f0/64748b?text=Ceinture" alt="<?= $products[3]["name"] ?>" class="product-card__image">
-                            <div class="product-card__badges"></div>
-                        </div>
-                        <div class="product-card__content">
-                            <span class="product-card__category"><?= $products[3]["catégorie"] ?></span>
-                            <a href="produit.html?id=12" class="product-card__title"><?= $products[3]["name"] ?></a>
-                            <div class="product-card__price"><span class="product-card__price-current"><?= number_format($products[3]["prix"], 2, ",", " ") ?> €</span></div>
-                            <p class="product-card__stock product-card__stock--available">✓ En stock (<?= $products[3]["stock"] ?>)</p>
-                            <div class="product-card__actions">
-                                <form action="panier.html" method="POST">
-                                    <input type="hidden" name="product_id" value="12">
-                                    <button type="submit" class="btn btn--primary btn--block">Ajouter</button>
-                                </form>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- 13. Sac à dos -->
-                    <article class="product-card">
-                        <div class="product-card__image-wrapper">
-                            <img src="https://via.placeholder.com/300x300/e2e8f0/64748b?text=Ceinture" alt="<?= $products[4]["name"] ?>" class="product-card__image">
-                            <div class="product-card__badges"></div>
-                        </div>
-                        <div class="product-card__content">
-                            <span class="product-card__category"><?= $products[4]["catégorie"] ?></span>
-                            <a href="produit.html?id=13" class="product-card__title"><?= $products[4]["name"] ?></a>
-                            <div class="product-card__price"><span class="product-card__price-current"><?= number_format($products[4]["prix"], 2, ",", " ") ?> €</span></div>
-                            <p class="product-card__stock product-card__stock--available">✓ En stock (<?= $products[4]["stock"] ?>)</p>
-                            <div class="product-card__actions">
-                                <form action="panier.html" method="POST">
-                                    <input type="hidden" name="product_id" value="13">
-                                    <button type="submit" class="btn btn--primary btn--block">Ajouter</button>
-                                </form>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- 14. Bourriche d'huîtres -->
-                    <article class="product-card">
-                        <div class="product-card__image-wrapper">
-                            <img src="https://via.placeholder.com/300x300/e2e8f0/64748b?text=Ceinture" alt="<?= $products[5]["name"] ?>" class="product-card__image">
-                            <div class="product-card__badges"><span class="badge badge--out-of-stock">Rupture</span></div>
-                        </div>
-                        <div class="product-card__content">
-                            <span class="product-card__category"><?= $products[5]["catégorie"] ?></span>
-                            <a href="produit.html?id=14" class="product-card__title"><?= $products[5]["name"] ?></a>
-                            <div class="product-card__price"><span class="product-card__price-current"><?= number_format($products[5]["prix"], 2, ",", " ") ?> €</span></div>
-                            <p class="product-card__stock product-card__stock--out">✗ Rupture</p>
-                            <div class="product-card__actions">
-                                <button class="btn btn--secondary btn--block" disabled>Indisponible</button>
-                            </div>
-                        </div>
-                    </article>
+                                        else if($product["stock"]==0){ ?>
+                                            <span class="badge badge--out-of-stock">Rupture</span>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="product-card__content">
+                                    <span class="product-card__category"><?= $product["catégorie"] ?></span>
+                                    <a href="produit.html?id=<?=$product?>" class="product-card__title"><?= $product["name"] ?></a>
+                                    <div class="product-card__price"><span class="product-card__price-current"><?= number_format($product["prix"], 2, ",", " ") ?> €</span></div>
+                                    <?php
+                                        if ($product["stock"] >= 15) { ?>
+                                            <p class="product-card__stock product-card__stock--available">✓ En stock (<?= $product["stock"] ?>)</p>
+                                        <?php
+                                        }
+                                        else if ($product["stock"]>0 && $product["stock"]<15) { ?>
+                                            <p class="product-card__stock product-card__stock--low">⚠ Plus que <?= $product["stock"] ?></p>
+                                        <?php
+                                        }
+                                        else if ($product["stock"]==0){ ?>
+                                            <p class="product-card__stock product-card__stock--out">✗ Rupture</p>
+                                        <?php
+                                        }
+                                    
+                                    if ($product["stock"]==0){ ?>
+                                        <div class="product-card__actions">
+                                            <button class="btn btn--secondary btn--block" disabled>Indisponible</button>
+                                        </div>
+                                    <?php
+                                    }
+                                    else { ?>
+                                        <div class="product-card__actions">
+                                            <form action="panier.html" method="POST">
+                                                <input type="hidden" name="product_id" value="<?=$product?>">
+                                                <button type="submit" class="btn btn--primary btn--block">Ajouter</button>
+                                            </form>
+                                        </div>
+                                    <?php
+                                    } ?>
+                                </div>
+                            </article>
+                        <?php
+                        }
+                        ?>
 
                 </div>
 
