@@ -97,7 +97,36 @@
 
             <div class="catalog-main">
                 <div class="catalog-header">
-                    <p><strong>8</strong> produits trouvés</p>
+                    <p><strong><?= count($products) ?></strong> produits trouvés<br/>
+                    <strong>
+                    <?php
+                        $stock;
+                        foreach($products as $product) {
+                            if ($product["stock"] > 0) {
+                                $stock++;
+                            }
+                        } ?>
+                    <?= $stock ?></strong> produits en stock<br/>
+                    <strong>
+                    <?php
+                        $promo;
+                        foreach($products as $product) {
+                            if ($product["promo"] > 0) {
+                                $promo++;
+                            }
+                        } ?>
+                        <?= $promo ?></strong> produits en promo<br/>
+                    <strong>
+                    <?php
+                        $rupture;
+                        foreach($products as $product) {
+                            if ($product["stock"] === 0) {
+                                $rupture++;
+                            }
+                        } ?>
+                        <?= $rupture ?></strong> produits en rupture
+                    </p>
+
                     <div class="catalog-header__sort">
                         <label>Trier :</label>
                         <select class="form-select" style="width:auto">
@@ -123,16 +152,26 @@
                         foreach($products as $product){ ?>
                             <article class="product-card">
                                 <div class="product-card__image-wrapper">
-                                    <img src= <?= $product["image"] ?> class="product-card__image">
+                                    <img src= <?= $product["image"] ?> class="product-card__image" alt= <?= $product["name"] ?> >
                                     <div class="product-card__badges">
                                         <?php
+
+                                        if ($product["new"] === true) { ?>
+                                            <span class="badge badge--new">Nouveau</span>
+                                        <?php
+                                        }                                        
+
                                         if ($product["stock"]>0 && $product["stock"]<15) { ?>
                                             <span class="badge badge--low-stock">Derniers</span>
                                         <?php
                                         }
-
-                                        else if($product["stock"]==0){ ?>
+                                        else if($product["stock"]===0) { ?>
                                             <span class="badge badge--out-of-stock">Rupture</span>
+                                        <?php
+                                        }
+
+                                        if ($product["promo"] !==0) { ?>
+                                            <span class="badge badge--promo">- <?= $product["promo"] ?>%</span>
                                         <?php
                                         }
                                         ?>
@@ -151,12 +190,12 @@
                                             <p class="product-card__stock product-card__stock--low">⚠ Plus que <?= $product["stock"] ?></p>
                                         <?php
                                         }
-                                        else if ($product["stock"]==0){ ?>
+                                        else if ($product["stock"]===0){ ?>
                                             <p class="product-card__stock product-card__stock--out">✗ Rupture</p>
                                         <?php
                                         }
                                     
-                                    if ($product["stock"]==0){ ?>
+                                    if ($product["stock"]===0){ ?>
                                         <div class="product-card__actions">
                                             <button class="btn btn--secondary btn--block" disabled>Indisponible</button>
                                         </div>
