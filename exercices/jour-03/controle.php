@@ -14,6 +14,7 @@
         for($i=0; $i<10; $i++){
             $products[] = [
                 "name" => 'Produit ' . $i+1,
+                "prix" => rand(1, 200),
                 "stock" => rand(1, 300),
             ];
         }
@@ -47,11 +48,11 @@
     <p>
     <?php
         for($i=0; $i<10; $i++){
-            if ($products[$i]["stock"]>100){
+            if ($products[$i]["prix"]>100){
                 break;
             }
             else{
-                echo $products[$i]["name"] . ' : ' . $products[$i]["stock"] . ' en stock.<br>';
+                echo $products[$i]["name"] . ' : ' . $products[$i]["prix"] . ' €.<br>';
             }
         }
     ?>
