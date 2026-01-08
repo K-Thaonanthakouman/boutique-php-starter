@@ -40,6 +40,22 @@
             echo "Tu meurs quand, déchet de la société ?";
         }
 
+        echo "<br/>";
+
+        $constat = match(true) {
+            $age<6 => "Rentre chez toi regarder Pat'Patrouille !",
+            $age<12 => "Rentre chez toi jouer à Pokemon !",
+            $age<18 => "Non, cherche pas, on te servira pas d'alcool !",
+            $age<25 => "Fais pas genre tu sais tout, p'tit con !",
+            $age<35 => "Eeeeeeeh ouais, la réalité de la vie dans ta gueule, ça fait bizarre, hein ?!",
+            $age<45 => "Allez, bouge, il te reste plus grand-chose à vivre !",
+            $age<55 => "Eh voilà, le début des emmerdes.",
+            $age<65 => "Là normalement, tu t'emmerdes chez toi mais tu vas regarder les vieilles séries à la télé tellement t'es crevé.",
+            default => "Tu meurs quand, déchet de la société ?",
+        };
+        echo $constat;
+
+
     ?>
     
 </body>
