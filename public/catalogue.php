@@ -10,6 +10,7 @@
 
 <?php
     include("../app/data.php");
+    include("../app/helpers.php");
 ?>
 
 <header class="header">
@@ -152,21 +153,21 @@
                                     <div class="product-card__badges">
                                         <?php
 
-                                        if ($product["new"] === true) { ?>
+                                        if (isNew($product["date"]) === true) { ?>
                                             <span class="badge badge--new">Nouveau</span>
                                         <?php
                                         }                                        
 
-                                        if ($product["stock"]>0 && $product["stock"]<15) { ?>
+                                        if ((isInStock($product["stock"]) === true) && $product["stock"]<15) { ?>
                                             <span class="badge badge--low-stock">Derniers</span>
                                         <?php
                                         }
-                                        else if($product["stock"]===0) { ?>
+                                        else if(isInStock($product["stock"]) === false) { ?>
                                             <span class="badge badge--out-of-stock">Rupture</span>
                                         <?php
                                         }
 
-                                        if ($product["promo"] !==0) { ?>
+                                        if (isOnDiscount($product["promo"]) === true) { ?>
                                             <span class="badge badge--promo">- <?= $product["promo"] ?>%</span>
                                         <?php
                                         }
@@ -176,8 +177,18 @@
                                 <div class="product-card__content">
                                     <span class="product-card__category"><?= $product["catégorie"] ?></span>
                                     <a href="produit.html?id=<?=$product?>" class="product-card__title"><?= $product["name"] ?></a>
-                                    <div class="product-card__price"><span class="product-card__price-current"><?= number_format($product["prix"], 2, ",", " ") ?> €</span></div>
+                                    <div class="product-card__price"><span class="product-card__price-current">
                                     <?php
+                                        if(isOnDiscount($product["promo"]) === true){ ?>
+                                            <strike><?= formatPrice($product["prix"], " €", 2) ?></strike><br/>
+                                            <?= formatPrice(calculateDiscount($product["prix"], $product["promo"]), " €", 2) ?></span></div>
+                                            <?php
+                                        }
+                                        else{ ?>
+                                            <?=formatPrice($product["prix"], " €", 2) ?></span></div>
+                                        <?php
+                                        }
+                                
                                         if ($product["stock"] >= 15) { ?>
                                             <p class="product-card__stock product-card__stock--available">✓ En stock (<?= $product["stock"] ?>)</p>
                                         <?php
@@ -191,7 +202,7 @@
                                         <?php
                                         }
                                     
-                                    if ($product["stock"]===0){ ?>
+                                    if (isInStock($product["stock"]) === false){ ?>
                                         <div class="product-card__actions">
                                             <button class="btn btn--secondary btn--block" disabled>Indisponible</button>
                                         </div>
@@ -210,7 +221,7 @@
                             </article>
                         <?php
                         }
-                        ?>
+                    ?>
 
                 </div>
 
