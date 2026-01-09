@@ -97,34 +97,30 @@
 
             <div class="catalog-main">
                 <div class="catalog-header">
-                    <p><strong><?= count($products) ?></strong> produits trouvés<br/>
-                    <strong>
+                    
                     <?php
+
                         $stock;
+                        $promo;
+                        $rupture;
+
                         foreach($products as $product) {
                             if ($product["stock"] > 0) {
                                 $stock++;
                             }
-                        } ?>
-                    <?= $stock ?></strong> produits en stock<br/>
-                    <strong>
-                    <?php
-                        $promo;
-                        foreach($products as $product) {
+
                             if ($product["promo"] > 0) {
                                 $promo++;
                             }
-                        } ?>
-                        <?= $promo ?></strong> produits en promo<br/>
-                    <strong>
-                    <?php
-                        $rupture;
-                        foreach($products as $product) {
+
                             if ($product["stock"] === 0) {
                                 $rupture++;
                             }
                         } ?>
-                        <?= $rupture ?></strong> produits en rupture
+                    <p><strong><?= count($products) ?></strong> produits trouvés<br/>
+                    <strong><?= $stock ?></strong> produits en stock<br/>
+                    <strong><?= $promo ?></strong> produits en promo<br/>
+                    <strong><?= $rupture ?></strong> produits en rupture
                     </p>
 
                     <div class="catalog-header__sort">
