@@ -17,12 +17,18 @@
         5 => ["name" => "Mochi", "price" => 12],
     ];
 
-    if ($products[$_GET["id"]] !== NULL){
-        $id = $_GET["id"];
-        echo 'Voici le produit sélectionné : ' . $products[$id]["name"] . ', ' . $products[$id]["price"] . '€.<br/>';
+    if (isset($_GET["id"])){
+        
+        if ($products[$_GET["id"]] !== NULL){
+            $id = $_GET["id"];
+            echo 'Voici le produit sélectionné : ' . $products[$id]["name"] . ', ' . $products[$id]["price"] . '€.<br/>';
+        }
+        else if(($_GET["id" === NULL]) || ($products[$id] === NULL)){
+            echo "Aucun produit sélectionné.<br/>";
+        }
     }
-    else if(($_GET["id" === NULL]) || ($products[$id] === NULL)){
-        echo "Aucun produit sélectionné.<br/>";
+    else{
+        echo "Aucun produit sélectionné.";
     }
 
 
