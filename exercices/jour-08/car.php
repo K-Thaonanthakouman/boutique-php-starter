@@ -22,7 +22,6 @@ class Car
 
 }
 
-// Utilisation
 $car1 = new Car("Ferrari", "458 Italia", 2009);
 $car2 = new Car("Dodge", "Viper VX I", 2013);
 $car3 = new Car("Citroën", "2 CV", 1949);
