@@ -22,7 +22,6 @@ catch (PDOException $e) {
     echo "❌ Erreur : " . $e->getMessage();
 }
 
-var_dump($_POST["add"]);
 var_dump($_POST["name"]);
 var_dump($_POST["price"]);
 var_dump($_POST["stock"]);
