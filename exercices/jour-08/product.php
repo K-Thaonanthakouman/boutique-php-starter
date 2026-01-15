@@ -77,11 +77,7 @@ $produit3 = new product(3, "World of Warcraft", "Le jeu qui vous enlève votre v
 $produit4 = new product(4, "Zelda Breath of the Wild", "Le jeu où vous partez vous perdre dans la pampa", 49.99, 942, "jeux vidéo");
 $produit5 = new product(5, "Factorio", "Le jeu où vous travaillez encore après votre journée de travail irl", 19.99, 852, "jeux vidéo");
 
-$produits[] = $produit1;
-$produits[] = $produit2;
-$produits[] = $produit3;
-$produits[] = $produit4;
-$produits[] = $produit5;
+$produits = [$produit1, $produit2, $produit3, $produit4, $produit5];
 ?>
     <p>
 <?php
