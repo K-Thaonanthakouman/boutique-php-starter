@@ -1,5 +1,7 @@
 <?php
 
+// Exercice 4
+
 class product
 {
     public function __construct(int $id, string $name, string $description, float $prix, int $stock, string $categorie)
@@ -49,9 +51,15 @@ class product
         <p>Prix TTC après <?= $pourcentage ?>% de remise : <?= $discount ?>€.</p><?php
         return $discount;
     }
+
+    public function getSlug(string $chainebrute) : string
+    {
+        $chaineslug = strtr(strtolower($chainebrute), " ", "-");
+        return $chaineslug;
+    }
 }
 
-$produit = new product(1, "Mario Kart", "Le jeu où Maëva est pas bien forte", 40, 756, "jeux vidéo"); ?>
+$produit = new product(0, "Mario Kart", "Le jeu où Maëva est pas bien forte", 40, 756, "jeux vidéo"); ?>
 <p>Prix TTC : <?= $produit->getPriceIncludingTax(); ?>€.</p><?php
 $produit->isInStock();
 $produit->reduceStock(756);
@@ -59,6 +67,52 @@ $produit->isInStock();
 $produit->applyDiscount(17.44645);
 
 
+
+// Exercice 5
+
+$produits = [];
+$produit1 = new product(1, "Chrono Trigger", "Le meilleur jeu de l'univers", 29.90, 548, "jeux vidéo");
+$produit2 = new product(2, "Final Fantasy VI", "Le second meilleur jeu de l'univers", 34.99, 612, "jeux vidéo");
+$produit3 = new product(3, "World of Warcraft", "Le jeu qui vous enlève votre vie sociale", 39.99, 396, "jeux vidéo");
+$produit4 = new product(4, "Zelda Breath of the Wild", "Le jeu où vous partez vous perdre dans la pampa", 49.99, 942, "jeux vidéo");
+$produit5 = new product(5, "Factorio", "Le jeu où vous travaillez encore après votre journée de travail irl", 19.99, 852, "jeux vidéo");
+
+$produits[] = $produit1;
+$produits[] = $produit2;
+$produits[] = $produit3;
+$produits[] = $produit4;
+$produits[] = $produit5;
+?>
+    <p>
+<?php
+    foreach($produits as $produit){ ?>
+        Produit n°<?=$produit->id?> : <?=$produit->name?>, <?=$produit->description?>. Prix : <?=$produit->prix?>, <?=$produit->stock?> exemplaires en stock. Catégorie : <?=$produit->categorie?>.<br/><?php
+        $valeur_cat = $valeur_cat + $produit->prix;
+        $stock_total = $stock_total + $produit->stock;
+    }
+?>
+    </p>
+    <p>
+    La valeur unitaire de tout le catalogue est de <?=$valeur_cat?>€.<br/>
+    Le stock de tout le catalogue est de <?=$stock_total?> unités.
+    </p>
+
+<?php
+
+// Exercice 6
+    ?>
+    
+    <?php
+    foreach($produits as $produit){ ?>
+        <p><?=$produit->name?> en version slug : <?=$produit->getSlug($produit->name)?>.<br/>
+        La description du jeu en version slug : <?=$produit->getSlug($produit->description)?>.</p><?php
+    }
+    ?>
+    
+
+<?php
+
+var_dump($produits);
 
 
 
