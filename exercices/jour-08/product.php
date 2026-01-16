@@ -2,9 +2,9 @@
 
 // Exercice 4
 
-class product
+class Product
 {
-    public function __construct(int $id, string $name, string $description, float $prix, int $stock, string $categorie)
+    public function __construct(public int $id, public string $name, public string $description, public float $prix, public int $stock, public string $categorie)
     {
         $this->id = $id;
         $this->name = $name;
@@ -59,7 +59,7 @@ class product
     }
 }
 
-$produit = new product(0, "Mario Kart", "Le jeu où Maëva est pas bien forte", 40, 756, "jeux vidéo"); ?>
+$produit = new Product(0, "Mario Kart", "Le jeu où Maëva est pas bien forte", 40, 756, "jeux vidéo"); ?>
 <p>Prix TTC : <?= $produit->getPriceIncludingTax(); ?>€.</p><?php
 $produit->isInStock();
 $produit->reduceStock(756);
@@ -71,11 +71,11 @@ $produit->applyDiscount(17.44645);
 // Exercice 5
 
 $produits = [];
-$produit1 = new product(1, "Chrono Trigger", "Le meilleur jeu de l'univers", 29.90, 548, "jeux vidéo");
-$produit2 = new product(2, "Final Fantasy VI", "Le second meilleur jeu de l'univers", 34.99, 612, "jeux vidéo");
-$produit3 = new product(3, "World of Warcraft", "Le jeu qui vous enlève votre vie sociale", 39.99, 396, "jeux vidéo");
-$produit4 = new product(4, "Zelda Breath of the Wild", "Le jeu où vous partez vous perdre dans la pampa", 49.99, 942, "jeux vidéo");
-$produit5 = new product(5, "Factorio", "Le jeu où vous travaillez encore après votre journée de travail irl", 19.99, 852, "jeux vidéo");
+$produit1 = new Product(1, "Chrono Trigger", "Le meilleur jeu de l'univers", 29.90, 548, "jeux vidéo");
+$produit2 = new Product(2, "Final Fantasy VI", "Le second meilleur jeu de l'univers", 34.99, 612, "jeux vidéo");
+$produit3 = new Product(3, "World of Warcraft", "Le jeu qui vous enlève votre vie sociale", 39.99, 396, "jeux vidéo");
+$produit4 = new Product(4, "Zelda Breath of the Wild", "Le jeu où vous partez vous perdre dans la pampa", 49.99, 942, "jeux vidéo");
+$produit5 = new Product(5, "Factorio", "Le jeu où vous travaillez encore après votre journée de travail irl", 19.99, 852, "jeux vidéo");
 
 $produits = [$produit1, $produit2, $produit3, $produit4, $produit5];
 ?>
