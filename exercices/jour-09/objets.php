@@ -126,7 +126,7 @@ class Cart
 {
     private array $items = [];
     
-    public function addProduct(Product $product, int $quantity = 1): object
+    public function addProduct(Product $product, int $quantity = 1): Cart
     {
         $id = $product->getId();
         
@@ -143,7 +143,7 @@ class Cart
         }
     }
     
-    public function removeProduct(int $productId): object
+    public function removeProduct(int $productId): Cart
     {
         unset($this->items[$productId]);
         return $this;
