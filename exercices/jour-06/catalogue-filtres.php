@@ -34,11 +34,17 @@ $produits = [
 <?php
     $search = htmlspecialchars($_GET["search"], ENT_QUOTES, "UTF-8");
     $results = [];
+    
     foreach ($produits as $produit){
-        if (stripos($produit["name"], $search) !== false){
-            $results[] = $produit["name"];
+        if (empty($search) == true){
+            break;
         }
-    }
+        else{
+            if (stripos($produit["name"], $search) !== false){
+                $results[] = $produit["name"];
+            }
+        }
+    }   
 
 ?>
     <select name="category">
@@ -66,7 +72,10 @@ $produits = [
 
     $results3 = [];
     foreach ($produits as $produit){
-        if ($_GET["price"] <= ($produit["price"] / 1000)){
+        if (empty($_GET["price"]) == true){
+            break;
+        }
+        else if($_GET["price"] <= ($produit["price"] / 1000)){
             $results3[] = $produit["name"];
         }
     }
@@ -76,19 +85,64 @@ $produits = [
 </form>
 
 <?php
-$final = [];
-foreach($results as $res1){
+$final;
+
+if ((!empty($results)) == true && (empty($results2) == true) && (empty($results3) == true)){
+    $final = $results;
+}
+else if ((empty($results)) == true && (!empty($results2) == true) && (empty($results3) == true)){
+    $final = $results2;
+}
+else if ((empty($results)) == true && (empty($results2) == true) && (!empty($results3) == true)){
+    $final = $results3;
+}
+
+if ((!empty($results)) == true && (!empty($results2) == true) && (empty($results3) == true)){
+    foreach($results as $res1){
+        foreach($results2 as $res2){
+            if($res1 == $res2){
+                $final[] = $res2;
+            }
+        }
+    }
+}
+else if ((!empty($results)) == true && (empty($results2) == true) && (!empty($results3) == true)){
+    foreach($results as $res1){
+        foreach($results3 as $res3){
+            if($res1 == $res3){
+                $final[] = $res3;
+            }            
+        }
+    }
+}
+else if ((empty($results)) == true && (!empty($results2) == true) && (!empty($results3) == true)){
     foreach($results2 as $res2){
         foreach($results3 as $res3){
-            if(($res1 == $res2) && ($res1 == $res3) && ($res2 == $res3)){
+            if($res2 == $res3){
                 $final[] = $res3;
             }
         }
     }
 }
 
+if (((!empty($results)) == true) && (!empty($results2) == true) && (!empty($results3) == true)){
+    foreach($results as $res1){
+        foreach($results2 as $res2){
+            if($res1 == $res2){
+                foreach($results3 as $res3){
+                    if ($res2 == $res3){
+                        $final[] = $res3;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
 if (empty($final) != true){?>
-    Votre recherche : <?php
+    Résultat de votre recherche : <?php
     foreach ($final as $fin){
         ?><?=$fin?> <?php
     }?>
@@ -107,11 +161,12 @@ else{?>
 
     
 
-// var_dump($results);
-// var_dump($_GET["category"]);
-// var_dump($_GET["price"]);
+?><p><pre><?php var_dump($results);?></pre></p>
+<p><pre><?php var_dump($results2);?></pre></p>
+<p><pre><?php var_dump($results3);?></pre></p>
+<p><pre><?php var_dump($final);?></pre></p>
 
-?>
+
     
 </body>
 </html>
