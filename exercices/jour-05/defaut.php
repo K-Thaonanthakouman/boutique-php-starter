@@ -9,15 +9,22 @@
 
 <?php
 
-    function formatPrice($amount, $currency, $decimals) {
+    function formatPrice($amount, $currency = "€", $decimals = 2) {
         return number_format($amount, $decimals, ",", " ") . $currency;
     }
 
     $somme = (rand(0, 100000)/1000);
-    $formate = formatPrice($somme, "€", "2");
+
+
+
+    $formate = formatPrice($somme);
     echo "Somme non formatée : $somme ; somme formatée : $formate<br/>";
 
+    $formate2 = formatPrice($somme, "$");
+    echo "Somme non formatée : $somme ; somme formatée : $formate2<br/>";
 
+    $formate3 = formatPrice($somme, "yens", "2");
+    echo "Somme non formatée : $somme ; somme formatée : $formate3<br/>";
 ?>
     
 </body>
